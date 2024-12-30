@@ -1,0 +1,30 @@
+# Electricity Billing Calculator
+
+def calculate_energy(power_rating, hours_per_day, days=30):
+    energy_kwh = (power_rating / 1000) * hours_per_day * days
+    return energy_kwh
+
+def calculate_bill(energy_kwh, rate_per_unit):
+    return energy_kwh * rate_per_unit
+
+# Input details
+appliances = {
+    "Air Conditioner": 2000,  # Power in watts
+    "Laptop": 100,
+    "Printer": 500,
+}
+
+rate_per_unit = 5.0  # Cost per unit in ₹
+
+print("Electricity Bill Calculator\n")
+total_energy = 0
+
+for appliance, power in appliances.items():
+    hours = float(input(f"Enter daily usage hours for {appliance}: "))
+    energy = calculate_energy(power, hours)
+    total_energy += energy
+    print(f"{appliance}: {energy:.2f} kWh per month")
+
+bill = calculate_bill(total_energy, rate_per_unit)
+print(f"\nTotal Energy Consumption: {total_energy:.2f} kWh")
+print(f"Estimated Electricity Bill: ₹{bill:.2f}")
